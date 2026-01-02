@@ -1,832 +1,424 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Us - Elegant</title>
-
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
-
-  <style>
-    :root {
-      --bg: #050816;
-      --bg-soft: #0b1020;
-      --accent: #7c5cff;
-      --accent-soft: rgba(124, 92, 255, 0.15);
-      --text: #f5f5f5;
-      --muted: #b0b3c1;
-      --border: rgba(255, 255, 255, 0.06);
-      --danger: #ff5c7a;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: radial-gradient(circle at top, #1b2a4a 0, #050816 45%, #02030a 100%);
-      color: var(--text);
-      min-height: 100vh;
-      line-height: 1.6;
-    }
-
-    /* Top navigation */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(18px);
-      background: linear-gradient(to bottom, rgba(5, 8, 22, 0.94), rgba(5, 8, 22, 0.7), transparent);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0.75rem 1.25rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .nav-logo {
-      font-weight: 600;
-      font-size: 1.1rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .nav-logo span {
-      display: inline-flex;
-      width: 26px;
-      height: 26px;
-      border-radius: 999px;
-      border: 1px solid var(--accent);
-      align-items: center;
-      justify-content: center;
-      font-size: 0.7rem;
-      background: radial-gradient(circle at 30% 0, #b794ff 0, #7c5cff 40%, transparent 70%);
-      box-shadow: 0 0 20px rgba(124, 92, 255, 0.5);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 1.5rem;
-      align-items: center;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: var(--muted);
-      font-size: 0.9rem;
-      position: relative;
-      padding-bottom: 0.15rem;
-      transition: color 0.2s ease;
-    }
-
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, #7c5cff, #ff8ab5);
-      transition: width 0.2s ease;
-    }
-
-    .nav-links a:hover {
-      color: var(--text);
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    .nav-cta {
-      border-radius: 999px;
-      padding: 0.45rem 1rem;
-      border: 1px solid var(--border);
-      background: rgba(10, 12, 30, 0.9);
-      font-size: 0.8rem;
-      cursor: pointer;
-      color: var(--muted);
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
-    }
-
-    .nav-cta:hover {
-      border-color: var(--accent);
-      background: radial-gradient(circle at top left, rgba(124, 92, 255, 0.2), rgba(10, 12, 30, 0.95));
-      transform: translateY(-1px);
-    }
-
-    /* Layout */
-    main {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 2.75rem 1.25rem 3.5rem;
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2.6fr);
-      gap: 3rem;
-      align-items: center;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.25rem 0.75rem;
-      border-radius: 999px;
-      background: rgba(8, 11, 30, 0.9);
-      border: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 0.75rem;
-      margin-bottom: 0.85rem;
-    }
-
-    .eyebrow-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: radial-gradient(circle, #9cfffa 0, #4de2ff 45%, transparent 80%);
-      box-shadow: 0 0 12px rgba(77, 226, 255, 0.7);
-    }
-
-    h1 {
-      font-size: clamp(2.3rem, 4vw, 3rem);
-      margin-bottom: 0.6rem;
-    }
-
-    h1 span {
-      background: linear-gradient(120deg, #7c5cff, #ff8ab5);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    .tagline {
-      color: var(--muted);
-      max-width: 32rem;
-      font-size: 0.98rem;
-      margin-bottom: 1.25rem;
-    }
-
-    /* Stats strip */
-    .stats {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .stat-pill {
-      flex: 1 1 120px;
-      min-width: 120px;
-      padding: 0.75rem 0.85rem;
-      border-radius: 0.9rem;
-      border: 1px solid var(--border);
-      background: radial-gradient(circle at top left, rgba(124, 92, 255, 0.18), rgba(7, 10, 26, 0.96));
-      display: flex;
-      flex-direction: column;
-      gap: 0.1rem;
-      cursor: default;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .stat-pill::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.12), transparent 55%);
-      opacity: 0;
-      transition: opacity 0.25s ease;
-      pointer-events: none;
-    }
-
-    .stat-pill:hover::after {
-      opacity: 1;
-    }
-
-    .stat-number {
-      font-weight: 600;
-      font-size: 1.1rem;
-    }
-
-    .stat-label {
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    /* CTA row */
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.9rem;
-      align-items: center;
-    }
-
-    .btn-primary {
-      border-radius: 999px;
-      padding: 0.7rem 1.4rem;
-      border: none;
-      cursor: pointer;
-      font-size: 0.9rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      background: linear-gradient(120deg, #7c5cff, #ff8ab5);
-      color: #050816;
-      box-shadow: 0 12px 25px rgba(124, 92, 255, 0.4);
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 16px 32px rgba(124, 92, 255, 0.5);
-    }
-
-    .btn-ghost {
-      border-radius: 999px;
-      padding: 0.7rem 1.3rem;
-      border: 1px solid var(--border);
-      cursor: pointer;
-      font-size: 0.9rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      color: var(--muted);
-      background: rgba(5, 8, 22, 0.9);
-      transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
-    }
-
-    .btn-ghost:hover {
-      border-color: var(--accent);
-      background: radial-gradient(circle at top left, rgba(124, 92, 255, 0.16), rgba(5, 8, 22, 0.97));
-      color: var(--text);
-    }
-
-    .microcopy {
-      font-size: 0.75rem;
-      color: var(--muted);
-    }
-
-    /* Right card */
-    .hero-card {
-      position: relative;
-      border-radius: 1.5rem;
-      background: radial-gradient(circle at top, rgba(124, 92, 255, 0.3), rgba(5, 8, 22, 0.98));
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      padding: 1.4rem 1.4rem 1.6rem;
-      overflow: hidden;
-      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.9), 0 0 60px rgba(124, 92, 255, 0.45);
-      transform-origin: center;
-      animation: cardFloat 8s ease-in-out infinite;
-    }
-
-    @keyframes cardFloat {
-      0%, 100% { transform: translateY(0) rotate3d(1, 0, 0, 0deg); }
-      50% { transform: translateY(-8px) rotate3d(1, 0, 0, 3deg); }
-    }
-
-    .card-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.7rem;
-      padding: 0.3rem 0.7rem;
-      border-radius: 999px;
-      background: rgba(5, 8, 22, 0.8);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: var(--muted);
-      margin-bottom: 0.75rem;
-    }
-
-    .card-badge-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: var(--danger);
-      box-shadow: 0 0 10px rgba(255, 92, 122, 0.9);
-    }
-
-    .card-title {
-      font-size: 1rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .card-subtitle {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-bottom: 1rem;
-    }
-
-    .card-divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-      margin-bottom: 0.9rem;
-      opacity: 0.8;
-    }
-
-    .timeline {
-      display: grid;
-      gap: 0.75rem;
-      margin-bottom: 1.4rem;
-    }
-
-    .timeline-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.65rem;
-    }
-
-    .timeline-dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      background: radial-gradient(circle, #ffeca8 0, #ff8ab5 28%, transparent 70%);
-      box-shadow: 0 0 14px rgba(255, 232, 168, 0.9);
-      margin-top: 0.2rem;
-      flex-shrink: 0;
-    }
-
-    .timeline-text {
-      font-size: 0.78rem;
-      color: var(--muted);
-    }
-
-    .timeline-text span {
-      color: var(--text);
-      font-weight: 500;
-    }
-
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-      margin-bottom: 1.2rem;
-    }
-
-    .pill {
-      font-size: 0.7rem;
-      padding: 0.3rem 0.55rem;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      background: rgba(4, 6, 16, 0.7);
-      color: var(--muted);
-    }
-
-    .card-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.75rem;
-      color: var(--muted);
-    }
-
-    .presence-dots {
-      display: flex;
-      align-items: center;
-      gap: 0.15rem;
-    }
-
-    .presence-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: #1ddf80;
-      box-shadow: 0 0 12px rgba(29, 223, 128, 0.8);
-    }
-
-    .presence-dot:nth-child(2) {
-      background: #fecd57;
-      box-shadow: 0 0 12px rgba(254, 205, 87, 0.8);
-    }
-
-    .presence-dot:nth-child(3) {
-      background: #ff5c7a;
-      box-shadow: 0 0 12px rgba(255, 92, 122, 0.8);
-    }
-
-    /* Team section */
-    section {
-      margin-top: 3.3rem;
-    }
-
-    .section-label {
-      font-size: 0.78rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.35rem;
-    }
-
-    .section-title {
-      font-size: 1.2rem;
-      margin-bottom: 0.7rem;
-    }
-
-    .section-desc {
-      font-size: 0.9rem;
-      color: var(--muted);
-      max-width: 32rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 1.3rem;
-    }
-
-    .member-card {
-      position: relative;
-      border-radius: 1rem;
-      background: radial-gradient(circle at top left, rgba(124, 92, 255, 0.18), rgba(5, 8, 22, 0.98));
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      padding: 1rem;
-      overflow: hidden;
-      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
-      cursor: default;
-    }
-
-    .member-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.85);
-      border-color: rgba(124, 92, 255, 0.7);
-    }
-
-    .member-header {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 0.65rem;
-    }
-
-    .avatar {
-      width: 44px;
-      height: 44px;
-      border-radius: 999px;
-      background: radial-gradient(circle, #ffe5c2 0, #ff8ab5 55%, #7c5cff 90%);
-      border: 2px solid rgba(255, 255, 255, 0.85);
-      box-shadow: 0 0 0 3px rgba(124, 92, 255, 0.4);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .avatar::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.35), transparent 55%);
-      opacity: 0.85;
-      mix-blend-mode: screen;
-    }
-
-    .member-meta h3 {
-      font-size: 0.92rem;
-      margin-bottom: 0.1rem;
-    }
-
-    .member-meta p {
-      font-size: 0.78rem;
-      color: var(--muted);
-    }
-
-    .member-bio {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-bottom: 0.7rem;
-    }
-
-    .chip-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.35rem;
-      margin-bottom: 0.7rem;
-    }
-
-    .chip {
-      font-size: 0.7rem;
-      padding: 0.25rem 0.55rem;
-      border-radius: 999px;
-      background: rgba(4, 6, 16, 0.9);
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      color: var(--muted);
-    }
-
-    .member-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.75rem;
-      color: var(--muted);
-    }
-
-    .link-pill {
-      font-size: 0.7rem;
-      padding: 0.25rem 0.55rem;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      background: rgba(5, 8, 22, 0.9);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
-      cursor: pointer;
-      transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
-    }
-
-    .link-pill:hover {
-      border-color: var(--accent);
-      background: radial-gradient(circle at top left, rgba(124, 92, 255, 0.25), rgba(5, 8, 22, 0.94));
-      color: var(--text);
-    }
-
-    /* Contact strip */
-    .contact-strip {
-      margin-top: 2.8rem;
-      border-radius: 1.1rem;
-      padding: 1rem 1.15rem;
-      background: linear-gradient(120deg, rgba(124, 92, 255, 0.16), rgba(5, 8, 22, 0.96));
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.75rem;
-      justify-content: space-between;
-    }
-
-    .contact-strip p {
-      font-size: 0.86rem;
-      color: var(--muted);
-      max-width: 25rem;
-    }
-
-    /* Footer */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 1.2rem 1.25rem 1.8rem;
-      color: var(--muted);
-      font-size: 0.78rem;
-      text-align: center;
-      margin-top: 2.5rem;
-      background: radial-gradient(circle at bottom, rgba(124, 92, 255, 0.12), transparent 55%);
-    }
-
-    /* Small screens */
-    @media (max-width: 800px) {
-      .hero {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .hero-card {
-        order: -1;
-        margin-bottom: 1.5rem;
-        animation: none;
-      }
-
-      main {
-        padding-top: 2rem;
-      }
-
-      .nav-links {
-        display: none;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .stat-pill {
-        padding: 0.6rem 0.7rem;
-      }
-
-      .contact-strip {
-        align-items: flex-start;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IDEATHON 2026 - MVGR IIC</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #050816;
+            --bg-soft: #0b1020;
+            --accent: #7c5cff;
+            --accent-soft: rgba(124, 92, 255, 0.15);
+            --text: #f5f5f5;
+            --muted: #b0b3c1;
+            --border: rgba(255, 255, 255, 0.06);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: radial-gradient(circle at top, #1b2a4a 0, #050816 45%, #02030a 100%);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .poster {
+            width: 100%;
+            /* max-width: 850px; */
+            height: auto;
+            background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(11,16,32,0.95));
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            box-shadow: 
+                0 50px 100px rgba(0,0,0,0.6),
+                0 0 0 1px rgba(255,255,255,0.1);
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-height: 900px;
+        }
+
+        .header {
+            padding: 35px 45px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            background: rgba(82, 94, 151, 0.9);
+            backdrop-filter: blur(20px);
+        }
+
+        .logo-left {
+            height: 110px;
+            width: auto;
+            border-radius: 16px;
+            /* box-shadow: 0 10px 30px rgba(0,0,0,0.5); */
+        }
+
+        .college-name {
+            text-align: center;
+            font-weight: 600;
+            font-size: 24px;
+            letter-spacing: 0.5px;
+        }
+
+        .college-location {
+            font-size: 15px;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        .logo-right {
+            height: 95px;
+            width: auto;
+            border-radius: 16px;
+            /* box-shadow: 0 10px 30px rgba(0,0,0,0.5); */
+        }
+
+        .presents {
+            text-align: center;
+            padding: 30px 50px;
+            background: linear-gradient(135deg, var(--accent), #ff8ab5);
+            font-size: 22px;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            box-shadow: 0 15px 40px rgba(124,92,255,0.4);
+            margin: 0 45px;
+            border-radius: 20px;
+            transform: translateY(-15px);
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 60px 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .title-section {
+            text-align: center;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .event-title {
+            font-size: 68px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+            line-height: 1.1;
+        }
+
+        .event-title span {
+            background: linear-gradient(120deg, var(--accent), #ff8ab5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .event-date {
+            font-size: 24px;
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 20px;
+        }
+
+        .venue-card, .highlights-card {
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(15px);
+            padding: 35px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+        }
+
+        .venue-title, .highlights-title {
+            font-size: 22px;
+            margin-bottom: 25px;
+            color: var(--text);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .venue-title::before {
+            content: "📍";
+            font-size: 24px;
+        }
+
+        .highlights-title::before {
+            content: "✨";
+            font-size: 24px;
+        }
+
+        .detail-item {
+            margin-bottom: 20px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .detail-item::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .detail-item strong {
+            color: var(--text);
+        }
+
+        .highlight-list {
+            list-style: none;
+        }
+
+        .highlight-item {
+            padding: 18px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            position: relative;
+            padding-left: 35px;
+        }
+
+        .highlight-item::before {
+            content: "★";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 16px;
+        }
+
+        .highlight-item:last-child {
+            border-bottom: none;
+        }
+
+        .organizers-section {
+            padding: 40px 50px;
+            background: rgba(5,8,22,0.9);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+        }
+
+        .organizer-card {
+            background: rgba(255,255,255,0.03);
+            padding: 30px 25px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .organizer-card:hover {
+            background: rgba(124,92,255,0.1);
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .organizer-role {
+            font-size: 13px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .organizer-name {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .organizer-dept {
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .register-section {
+            /* position: absolute; */
+            top: 40px;
+            right: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            z-index: 10;
+        }
+
+        .register-btn {
+            background: linear-gradient(120deg, var(--accent), #ff8ab5);
+            color: var(--bg);
+            border: none;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            box-shadow: 0 15px 40px rgba(124,92,255,0.5);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .register-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 25px 50px rgba(124,92,255,0.7);
+        }
+
+        .qr-code {
+            width: 100px;
+            height: 100px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+            border: 3px solid rgba(255,255,255,0.2);
+            background: white;
+        }
+
+        @media (max-width: 900px) {
+            .poster {
+                width: 100%;
+                max-width: 650px;
+                height: auto;
+                min-height: 700px;
+            }
+            .header {
+                flex-direction: column;
+                align-items: center;
+                padding: 20px;
+                text-align: center;
+            }
+            .logo-left, .logo-right { max-height: 86px; }
+            .presents { margin: 0 20px; transform: none; font-size: 18px; padding: 18px; }
+            .main-content { padding: 26px; }
+            .details-grid { grid-template-columns: 1fr; gap: 24px; }
+            .venue-card, .highlights-card { padding: 20px; }
+            .register-section {
+                /* position: static; */
+                /* top: auto; right: auto; */
+                margin: 16px auto 0;
+                flex-direction: row;
+                gap: 12px;
+                justify-content: center;
+            }
+            .qr-code { width: 84px; height: 84px; }
+            .qr-caption { font-size: 13px; color: var(--muted); margin-top: 8px; }
+        }
+    </style>
 </head>
-
 <body>
-  <header>
-    <nav class="nav" role="navigation">
-      <div class="nav-logo">
-        <span>AU</span>
-        <span>About Us</span>
-      </div>
-
-      <div></div>
-
-      <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#team">Team</a>
-        <a href="#contact">Contact</a>
-        <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });">
-          Let’s talk <span>↗</span>
-        </button>
-      </div>
-    </nav>
-  </header>
-
-  <main>
-    <!-- Hero / About -->
-    <section id="about" class="hero">
-      <div>
-        <div class="eyebrow">
-          <span class="eyebrow-dot" aria-hidden="true"></span>
-          Crafted for humans, not just users
-        </div>
-
-        <h1>About <span>Our Studio</span></h1>
-
-        <p class="tagline">
-          We are a small team of builders, designers, and problem‑solvers focused on creating digital products that feel effortless, fast, and thoughtfully crafted.
-        </p>
-
-        <div class="stats">
-          <div class="stat-pill">
-            <div class="stat-number">5+ yrs</div>
-            <div class="stat-label">Product experience</div>
-          </div>
-
-          <div class="stat-pill">
-            <div class="stat-number">40+</div>
-            <div class="stat-label">Projects shipped</div>
-          </div>
-
-          <div class="stat-pill">
-            <div class="stat-number">97%</div>
-            <div class="stat-label">Client retention</div>
-          </div>
-        </div>
-
-        <div class="hero-actions">
-          <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });">
-            Start a project <span>→</span>
-          </button>
-
-          <button class="btn-ghost" onclick="document.getElementById('team').scrollIntoView({ behavior: 'smooth' });">
-            Meet the team
-          </button>
-
-          <span class="microcopy">Average response time under 24 hours.</span>
-        </div>
-      </div>
-
-      <aside class="hero-card" aria-label="Company snapshot">
-        <div class="card-badge">
-          <span class="card-badge-dot" aria-hidden="true"></span>
-          Live product health · All systems normal
-        </div>
-
-        <h2 class="card-title">A quick snapshot</h2>
-        <p class="card-subtitle">A studio built around focus, clarity, and long‑term partnerships.</p>
-
-        <div class="card-divider" role="separator"></div>
-
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <p class="timeline-text"><span>2019</span> — Started as a two‑person team helping early‑stage startups ship MVPs faster.</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <p class="timeline-text"><span>Today</span> — A distributed studio collaborating with teams across 6+ time zones.</p>
-          </div>
-        </div>
-
-        <div class="pill-row">
-          <span class="pill">Pixel‑perfect frontends</span>
-          <span class="pill">Fast, reliable backends</span>
-          <span class="pill">Product strategy</span>
-          <span class="pill">Design systems</span>
-        </div>
-
-        <div class="card-footer">
-          <div>
-            Trusted by teams in<br />
-            SaaS · Fintech · Education
-          </div>
-
-          <div>
-            <div class="presence-dots">
-              <span class="presence-dot"></span>
-              <span class="presence-dot"></span>
-              <span class="presence-dot"></span>
+    <div class="poster">
+        <div class="header">
+            <img src="iiclogo-1.png" alt="IIC Logo" class="logo-left">
+            <div class="college-name">
+                <span>MVGR College of Engineering</span>
+                <span>(Autonomous)</span>
+                <div class="college-location">Vizianagaram, Andhra Pradesh</div>
             </div>
-            <div>Humans behind every screen.</div>
-          </div>
+            <img src="mvgr_logo.png" alt="MVGR Logo" class="logo-right">
         </div>
-      </aside>
-    </section>
 
-    <!-- Team -->
-    <section id="team">
-      <p class="section-label">Team</p>
-      <h2 class="section-title">People behind the work</h2>
-      <p class="section-desc">Small, focused, and senior‑led. You work directly with the people designing and building your product, not layers of management.</p>
-
-      <div class="team-grid">
-        <article class="member-card">
-          <div class="member-header">
-            <div class="avatar" aria-hidden="true"></div>
-            <div class="member-meta">
-              <h3>Alex Rivera</h3>
-              <p>Product & UX Lead</p>
+        <div class="presents">
+            Institution's Innovation Council<br>Presents
+        </div>
+        <div class="register-section">
+            <!-- <button class="register-btn">Register Now</button> -->
+            <div class="qr-wrap">
+                <img src="qr.png" alt="QR Code" class="qr-code">
+                <div class="qr-caption"> <strong>Scan to register:</strong> </div>
             </div>
-          </div>
-
-          <p class="member-bio">Leads discovery, user journeys, and interaction patterns so that every screen feels cohesive and intuitive.</p>
-
-          <div class="chip-row">
-            <span class="chip">Workshops</span>
-            <span class="chip">User flows</span>
-            <span class="chip">Design systems</span>
-          </div>
-
-          <div class="member-footer">
-            <span>“Measure twice, ship once.”</span>
-            <button class="link-pill">Connect <span>↗</span></button>
-          </div>
-        </article>
-
-        <article class="member-card">
-          <div class="member-header">
-            <div class="avatar" aria-hidden="true"></div>
-            <div class="member-meta">
-              <h3>Samir Patel</h3>
-              <p>Full‑stack Engineer</p>
+        </div> 
+        <div class="main-content">
+            <div class="title-section">
+                <div class="event-title">IDEATHON <span>2026</span></div>
+                <div class="event-date">Saturday, 15 February 2026</div>
             </div>
-          </div>
 
-          <p class="member-bio">Turns ideas into performant, maintainable systems with clean APIs, observability, and strong security practices.</p>
+            <div class="details-grid">
+                <div class="venue-card">
+                    <div class="venue-title">Event Details</div>
+                    <div class="detail-item">
+                        <div>Venue: T&P Auditorium, Library Building</div>
+                    </div>
+                    <div class="detail-item">
+                        <div>Time: <strong>10:00 AM – 4:00 PM</strong></div>
+                    </div>
+                    <div class="detail-item">
+                        <div>Division: <strong>—</strong></div>
+                    </div>
+                    <div class="detail-item">
+                        <div>Dept Rep: <strong>[Name]</strong></div>
+                    </div>
+                    <div class="detail-item">
+                        <div><strong>MVGR College of Engineering</strong>, Vizianagaram</div>
+                    </div>
+                    <div class="detail-item">
+                        <div>Reg. Closes: <strong>10 Feb 2026</strong></div>
+                    </div>
+                    <div class="detail-item">
+                        <div>Team Fee: <strong>₹100/-</strong></div>
+                    </div>
+                </div>
 
-          <div class="chip-row">
-            <span class="chip">TypeScript</span>
-            <span class="chip">Node / Go</span>
-            <span class="chip">Cloud infra</span>
-          </div>
-
-          <div class="member-footer">
-            <span>Latency is part of the UX.</span>
-            <button class="link-pill">View code <span>↗</span></button>
-          </div>
-        </article>
-
-        <article class="member-card">
-          <div class="member-header">
-            <div class="avatar" aria-hidden="true"></div>
-            <div class="member-meta">
-              <h3>Mia Chen</h3>
-              <p>Delivery & Partnerships</p>
+                <div class="highlights-card">
+                    <div class="highlights-title">Highlights</div>
+                    <div class="highlight-list">
+                        <div class="highlight-item">Teams of maximum 4 members</div>
+                        <div class="highlight-item">PPT (10 slides max) + 3-min video pitch</div>
+                        <div class="highlight-item">Certificates & cash prizes for winners</div>
+                        <div class="highlight-item">Top ideas forwarded to national IIC contests</div>
+                    </div>
+                </div>
             </div>
-          </div>
+        </div>
 
-          <p class="member-bio">Keeps communication clear, timelines realistic, and delivery predictable so you always know what’s coming next.</p>
-
-          <div class="chip-row">
-            <span class="chip">Roadmaps</span>
-            <span class="chip">Stakeholder syncs</span>
-            <span class="chip">Ongoing support</span>
-          </div>
-
-          <div class="member-footer">
-            <span>Transparency over surprises.</span>
-            <button class="link-pill">Say hello <span>↗</span></button>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- Contact / Interaction -->
-    <section id="contact">
-      <p class="section-label">Next step</p>
-      <h2 class="section-title">Tell us about your idea</h2>
-      <p class="section-desc">Share a bit about your product, timeline, and what success looks like. We come back with a short, no‑pressure plan and a clear next step.</p>
-
-      <div class="contact-strip">
-        <p>Prefer email? Reach out at <span style="color: #ffffff;">hello@aboutus.studio</span> and we’ll reply within one business day.</p>
-        <button class="btn-primary" type="button">Open contact form <span>✉</span></button>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    © 2026 AboutUs Studio · Built with care for teams who care about experience.
-  </footer>
+        <div class="organizers-section">
+            <div class="organizer-card">
+                <div class="organizer-role">IIC Department Coordinator</div>
+                <div class="organizer-name">[Faculty Name]</div>
+                <div class="organizer-dept">Assistant Professor, CSE</div>
+            </div>
+            <div class="organizer-card">
+                <div class="organizer-role">IIC Convenor</div>
+                <div class="organizer-name">[Faculty Name]</div>
+                <div class="organizer-dept">Professor & Head, CSE</div>
+            </div>
+            <div class="organizer-card">
+                <div class="organizer-role">Principal & IIC President</div>
+                <div class="organizer-name">[Principal Name]</div>
+                <div class="organizer-dept">MVGR College of Engineering</div>
+            </div>
+            <div class="organizer-card">
+                <div class="organizer-role">IIC Chairman</div>
+                <div class="organizer-name">[Chairman Name]</div>
+                <div class="organizer-dept">MVGR College Council</div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
